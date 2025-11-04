@@ -1,0 +1,52 @@
+{% load static %} <!-- Load the static template tag to use static files like CSS and images -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Learning Journey</title>
+    <!-- Link to external CSS file stored in the static folder -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Page heading -->
+        <h1>Hi, welcome to My Learning Journey</h1>
+        <p>This page shares my experience of learning web development using Django.</p>
+
+        <!-- Section for admin screenshot -->
+        <h2>My Admin Screenshot</h2>
+        <div class="screenshot">
+            <!-- Load image from the static folder -->
+            <img src="{% static 'image/LAB4.png' %}" alt="Admin Screenshot">
+        </div>
+
+        <!-- Section for listing learning journey details -->
+        <h2>Learning Journey Details:</h2>
+        <div class="journey-section">
+            {% for journey in journeys %}
+            <!-- Each journey record displayed inside a card -->
+            <div class="card">
+                <h3>{{ journey.title }}</h3>
+                <p>{{ journey.description }}</p>
+                <small>Started on: {{ journey.date_started }}</small><br>
+                <small>Last updated: {{ journey.date_updated }}</small>
+            </div>
+            {% empty %}
+            <!-- Message to display if there are no journeys -->
+            <p>No journey records yet. Add some from the admin page!</p>
+            {% endfor %}
+        </div>
+
+        <!-- Button linking to About Me page -->
+        <div style="text-align:center;">
+            <a href="{% url 'about' %}" class="btn">Go to About Me</a>
+        </div>
+
+        <!-- Footer section -->
+        <footer>
+            <p>&copy; 2025 Phub Lham's Learning Journey</p>
+        </footer>
+    </div>
+</body>
+</html>

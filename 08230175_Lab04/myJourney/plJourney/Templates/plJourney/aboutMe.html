@@ -1,0 +1,45 @@
+{% load static %} <!-- Load the static template tag to use CSS, images, and other static files -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Me</title>
+    <!-- Link to external CSS file stored in the static folder -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Page heading -->
+        <h1>About Me</h1>
+
+        {% if about %}
+            <!-- Display profile image if 'about' object exists -->
+            <img src="{% static 'image/pl.jpg' %}" alt="Profile Picture" class="profile-img">
+
+            <!-- Card showing personal details -->
+            <div class="card">
+                <p><strong>Name:</strong> {{ about.name }}</p>
+                <p><strong>Bio:</strong> {{ about.bio }}</p>
+                <p><strong>Email:</strong> {{ about.email }}</p>
+                <p><strong>Interests:</strong> {{ about.interests }}</p>
+            </div>
+        {% else %}
+            <!-- Message displayed if no 'about' object is present -->
+            <div class="card">
+                <p>No information available yet. Please add details from the admin panel.</p>
+            </div>
+        {% endif %}
+
+        <!-- Button to navigate back to the main learning journey page -->
+        <div style="text-align:center;">
+            <a href="{% url 'index' %}" class="btn">Back to Learning Journey</a>
+        </div>
+
+        <!-- Footer section -->
+        <footer>
+            <p>&copy; 2025 Phub Lham's Learning Journey</p>
+        </footer>
+    </div>
+</body>
+</html>
